@@ -1,5 +1,8 @@
 <script setup>
 import { getLocalItem } from '~/composables/useLocalStorage';
+import { useProduct } from "~/store"
+
+const productStore = useProduct()
 
 const cart = ref([])
 
@@ -9,6 +12,8 @@ const removeCartItem = (cartItemId) => {
     cart.value = cartLocal.filter(cartItem => cartItem.id != cartItemId)
 
     setLocalItem("cart", cart.value)
+
+    productStore.setCartsItemLength(cart.value.length)
 }
 
 onMounted(() => {

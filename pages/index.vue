@@ -31,6 +31,8 @@ const openPopup = () => {
 onMounted(() => {
     if (!getLocalItem("cart")) {
         setLocalItem("cart", [])
+    }else {
+        productStore.setCartsItemLength(getLocalItem("cart").length)
     }
 })
 </script>

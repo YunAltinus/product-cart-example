@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+import { getLocalItem } from "~/composables/useLocalStorage";
+
 export const useProduct = defineStore("product", {
   state: () => ({
     product: {},
@@ -12,9 +14,15 @@ export const useProduct = defineStore("product", {
     productQuantityToCart: 1,
     productMaterials: [],
     productFeatures: [],
+
+    cartItemsLength: 0,
   }),
 
   getters: {
+    getCartsItemLength() {
+      return this.cartItemsLength;
+    },
+
     getUnSelectedImages() {
       return this.product.images.filter(
         (image) => image.listNumber != this.selectedImage.listNumber
@@ -33,6 +41,10 @@ export const useProduct = defineStore("product", {
   },
 
   actions: {
+    setCartsItemLength(cartItemsLength) {
+      this.cartItemsLength = cartItemsLength;
+    },
+
     setProductQuantity(action) {
       if (action == "plus") {
         if (this.selectedVariant.stock > this.productQuantityToCart) {

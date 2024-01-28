@@ -68,7 +68,7 @@ const addProductToCart = () => {
     })
 
     setLocalItem("cart", cart)
-
+    productStore.setCartsItemLength(cart.length)
     uploadedImage.value = null
 
     router.push({ name: 'cart' })

@@ -1,7 +1,8 @@
 export const getLocalItem = (key) => {
-  return JSON.parse(localStorage.getItem(key));
+  const cart = window.localStorage?.getItem(key)
+  return JSON.parse(cart);
 };
 
 export const setLocalItem = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
+  window.localStorage.setItem(key, JSON.stringify(value));
 };
